@@ -6,8 +6,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-
   <div class="keys">
     <div data-key="65" class="key">
       <kbd>A</kbd>
@@ -58,9 +56,20 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  // My code goes here
+  window.addEventListener('keydown', (e) => {
+    // Visual Element
+    const keyEl = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+    // Audio Element
+    const audioEl = document.querySelector(`audio[data-key="${e.keyCode}"]`)
 
+    if(audioEl) {
+      keyEl.classList.add('playing')
+      audioEl.currentTime = 0
+      audioEl.play()
+      setTimeout(() => keyEl.classList.remove('playing'), 300)
+    }
+  })
 </script>
-
-
 </body>
 </html>
